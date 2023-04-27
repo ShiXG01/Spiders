@@ -97,12 +97,13 @@ def Ticketing(data, num):
     script = 'Object.defineProperty(navigator, "webdriver", {get: () => false,});'
     driver.execute_script(script)
 
-    driver.find_element(By.XPATH, '//*[@id="J-userName"]').send_keys(acc['account'])
-    driver.find_element(By.XPATH, '//*[@id="J-password"]').send_keys(acc['password'])
+    driver.find_element(By.XPATH, '//*[@id="J-userName"]').send_keys(acc['account'])  # 输入账号
+    driver.find_element(By.XPATH, '//*[@id="J-password"]').send_keys(acc['password'])  # 输入密码
     # time.sleep(1)
-    driver.find_element(By.XPATH, '//*[@id="J-login"]').click()
+    driver.find_element(By.XPATH, '//*[@id="J-login"]').click()  # 点击登录
 
     driver.implicitly_wait(10)  # 设置隐式等待
+    # 通过滑块验证
     action = ActionChains(driver)
     span = driver.find_element(By.XPATH, '//*[@class="nc_iconfont btn_slide"]')
     action.click_and_hold(span)
@@ -150,6 +151,7 @@ def Ticketing(data, num):
     driver.find_element(By.XPATH, '//*[@id="submitOrder_id"]').click()
     time.sleep(5)  # 等待确认按钮加载
     # 点击确认
+    # 把下面这行的代码注释去掉就能点击确定提交订单
     # driver.find_element(By.XPATH, '//*[@id="qr_submit_id"]').click()
     return '下单成功，请尽快前往支付'
 
@@ -198,10 +200,12 @@ def run():
     Checking_Tickets(data)
     while True:
         try:
-            num = int(input('选择要购票的序号：'))
+            num = int(input('选择要购票的序号或输入-1退出：'))
             break
         except ValueError:
             print('请输入正确的序号')
+    if num == -1:
+        return
     result = Ticketing(data, num)
     print(result)
 
