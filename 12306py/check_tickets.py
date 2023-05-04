@@ -10,6 +10,8 @@ from selenium import webdriver
 from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.common.by import By
 
+from account import ACCOUNT
+
 
 def Checking_Tickets(data):
     # 购票
@@ -85,9 +87,6 @@ def Checking_Tickets(data):
 
 
 def Ticketing(data, num):
-    with open(r'D:\Spiders\account', 'r', encoding='utf-8') as f:
-        acc_json = f.read()
-    acc = json.loads(acc_json)
     # 购票
     option = webdriver.ChromeOptions()
     option.add_experimental_option("detach", True)
@@ -97,8 +96,8 @@ def Ticketing(data, num):
     script = 'Object.defineProperty(navigator, "webdriver", {get: () => false,});'
     driver.execute_script(script)
 
-    driver.find_element(By.XPATH, '//*[@id="J-userName"]').send_keys(acc['account'])  # 输入账号
-    driver.find_element(By.XPATH, '//*[@id="J-password"]').send_keys(acc['password'])  # 输入密码
+    driver.find_element(By.XPATH, '//*[@id="J-userName"]').send_keys(ACCOUNT.account_12306)  # 输入账号
+    driver.find_element(By.XPATH, '//*[@id="J-password"]').send_keys(ACCOUNT.password_12306)  # 输入密码
     # time.sleep(1)
     driver.find_element(By.XPATH, '//*[@id="J-login"]').click()  # 点击登录
 
@@ -152,7 +151,10 @@ def Ticketing(data, num):
     time.sleep(5)  # 等待确认按钮加载
     # 点击确认
     # 把下面这行的代码注释去掉就能点击确定提交订单
-    # driver.find_element(By.XPATH, '//*[@id="qr_submit_id"]').click()
+    # try:
+    #     driver.find_element(By.XPATH, '//*[@id="qr_submit_id"]').click()
+    # except selenium.common.exceptions.NoSuchElementException:
+    #     return '该列车车票以售空'
     return '下单成功，请尽快前往支付'
 
 
