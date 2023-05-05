@@ -9,4 +9,11 @@ import scrapy
 class LianjiaItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    title = scrapy.Field()
+    price = scrapy.Field()
+    unitPrice = scrapy.Field()
+    houseInfo = scrapy.Field()
+    cmtName = scrapy.Field()
+    cmtArea = scrapy.Field()
+    brokerName = scrapy.Field()
+    brokerPhone = scrapy.Field()
