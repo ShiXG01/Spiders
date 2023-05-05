@@ -4,7 +4,7 @@ import scrapy
 class ByzwwSpider(scrapy.Spider):
     name = "byzww"
     allowed_domains = ["81zw.cc"]
-    start_urls = ["https://www.81zw.cc/book/24/29601599.html"]
+    start_urls = ["https://www.81zw.cc/book/75072/37101656.html"]  # 要爬取的小说的开始位置
 
     def parse(self, response):
         title = response.xpath('//*[@id="book"]/div[2]/h1/text()').extract_first()

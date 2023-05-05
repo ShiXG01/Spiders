@@ -11,7 +11,7 @@ from itemadapter import ItemAdapter
 class XiaoshuoPipeline:
 
     def open_spider(self, spider):
-        self.file = open('shenxu.txt', 'w', encoding='utf-8')
+        self.file = open('xiaoshuo.txt', 'w', encoding='utf-8')
 
     def process_item(self, item, spider):
         title = item['title']
