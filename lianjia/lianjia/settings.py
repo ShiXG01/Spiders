@@ -65,6 +65,7 @@ DOWNLOADER_MIDDLEWARES = {
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    "lianjia.pipelines.LianjiaPipeline": 300,
+   "lianjia.pipelines.AnjukePipeline": 299,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

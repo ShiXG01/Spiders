@@ -17,3 +17,14 @@ class LianjiaItem(scrapy.Item):
     Face = scrapy.Field()
     Area = scrapy.Field()
     # houseNumber = scrapy.Field()
+
+
+class AnjukeItem(scrapy.Item):
+    title = scrapy.Field()
+    price = scrapy.Field()
+    leasingMethod = scrapy.Field()
+    houseType = scrapy.Field()
+    Floor = scrapy.Field()
+    Face = scrapy.Field()
+    Area = scrapy.Field()
+    Subdivision = scrapy.Field()
